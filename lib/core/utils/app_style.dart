@@ -2,6 +2,54 @@
 import 'package:flutter/material.dart';
 
 class AppStyle {
+  static  TextStyle style13Regular (BuildContext context) {
+   return  TextStyle(
+     fontFamily: 'NetflixSans',
+      fontSize: responsiveFont(fontSize: 13, context: context),
+      fontWeight: FontWeight.w400,
+    );
+  }
+  static  TextStyle style14Regular (BuildContext context) {
+   return  TextStyle(
+     fontFamily: 'NetflixSans',
+      fontSize: responsiveFont(fontSize: 14, context: context),
+      fontWeight: FontWeight.w400,
+    );
+  }
+  static  TextStyle style31Bold (BuildContext context) {
+   return  TextStyle(
+     fontFamily: 'NetflixSans',
+      fontSize: responsiveFont(fontSize: 31, context: context),
+      fontWeight: FontWeight.bold,
+    );
+  }
+  static  TextStyle style11Medium (BuildContext context) {
+   return  TextStyle(
+     fontFamily: 'NetflixSans',
+      fontSize: responsiveFont(fontSize: 11, context: context),
+      fontWeight: FontWeight.w500,
+    );
+  }
+  static  TextStyle style13Medium (BuildContext context) {
+   return  TextStyle(
+     fontFamily: 'NetflixSans',
+      fontSize: responsiveFont(fontSize: 13, context: context),
+      fontWeight: FontWeight.w500,
+    );
+  }
+  static  TextStyle style17Medium (BuildContext context) {
+   return  TextStyle(
+     fontFamily: 'NetflixSans',
+      fontSize: responsiveFont(fontSize: 13, context: context),
+      fontWeight: FontWeight.w500,
+    );
+  }
+
+
+
+
+
+
 
   static double scaleFactor(double width) {
     if (width < 500) {
