@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 
 abstract class AppColor{
-  static const Color authColor= Color(0xff4718AD);
-  static const Color authColorButton= Color(0xff8658E8);
+  static const blackColor=Color(0xff000000);
+  static const whiteColor=Color(0xffffffff);
+  static const yellowColor=Color(0xffFFB224);
 
 }

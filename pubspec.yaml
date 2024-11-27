@@ -59,6 +59,7 @@ dependencies:
   # Declarative routing for Flutter
   go_router: ^14.6.1
   device_preview: ^1.2.0
+  stylish_bottom_bar: ^1.1.0
   #for some animations
   flutter_animate: ^4.5.2
   # iOS style icons

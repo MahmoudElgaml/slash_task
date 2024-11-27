@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:slash_task/featuers/home_layout_feature/presentation/pages/home_layout_page.dart';
 import 'package:slash_task/featuers/splash_featuer/splash_view.dart';
 import 'package:slash_task/main.dart';
 
@@ -14,7 +15,7 @@ class AppRoute {
       ),
       GoRoute(
         path: home,
-        builder: (context, state) => const MyHomePage(title: "Home"),
+        builder: (context, state) => const HomeLayoutPage(),
       ),
 
 
