@@ -1,58 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:slash_task/core/utils/app_color.dart';
-import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../generated/assets.dart';
+import 'package:slash_task/core/utils/app_color.dart';
+import 'package:slash_task/featuers/home_layout_feature/presentation/manager/home_layout_cubit.dart';
+
+import '../widgets/my_bottom_navi.dart';
 
 class HomeLayoutPage extends StatelessWidget {
   const HomeLayoutPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColor.blackColor,
-      appBar: AppBar(
-        title: const Text("Home Layoutt"),
-      ),
-      bottomNavigationBar: const MyBottomNavi(),
-    );
-  }
-}
-
-class MyBottomNavi extends StatefulWidget {
-  const MyBottomNavi({super.key});
-
-  @override
-  State<MyBottomNavi> createState() => _MyBottomNaviState();
-}
-
-class _MyBottomNaviState extends State<MyBottomNavi> {
-  int selectedIndex = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return StylishBottomBar(
-      hasNotch: true,
-      currentIndex: selectedIndex,
-      onTap: (value) {
-        setState(() {
-          selectedIndex = value;
-        });
-      },
-      backgroundColor: AppColor.blackColor,
-      items: [
-        BottomBarItem(
-            icon: SvgPicture.asset(Assets.imagesHomeIcon),
-            title: const Text("Home"),
-            selectedColor: AppColor.yellowColor),
-        BottomBarItem(
-          icon: SvgPicture.asset(Assets.imagesSearchIcon),
-          title: const Text("search"),
-          selectedColor: AppColor.yellowColor,
+    return BlocProvider(
+      create: (context) => HomeLayoutCubit(),
+      child: Scaffold(
+        backgroundColor: AppColor.blackColor,
+        appBar: AppBar(
+          title: const Text("Home Layoutt"),
         ),
-      ],
-      option: DotBarOptions(),
+        body: BlocBuilder<HomeLayoutCubit, HomeLayoutState>(
+          builder: (context, state) {
+            return state.viewTap;
+          },
+        ),
+        bottomNavigationBar: const MyBottomNavi(),
+      ),
     );
   }
 }
