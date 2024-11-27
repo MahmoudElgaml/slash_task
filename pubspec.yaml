@@ -59,6 +59,8 @@ dependencies:
   # Declarative routing for Flutter
   go_router: ^14.6.1
   device_preview: ^1.2.0
+  #for some animations
+  flutter_animate: ^4.5.2
   # iOS style icons
   cupertino_icons: ^1.0.8
 
@@ -122,3 +124,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+  assets:
+    - assets/images/
+
