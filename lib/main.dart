@@ -3,8 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'config/routes/routes.dart';
+import 'core/service_locator/config.dart';
 
 void main() {
+  configureDependencies();
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
@@ -43,9 +45,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
-
       ),
-
     );
   }
 }
