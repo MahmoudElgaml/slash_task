@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../app_color.dart';
 import '../app_style.dart';
 import '../helper.dart';
 
-class CustomCampaignTextFiled extends StatelessWidget {
-  const CustomCampaignTextFiled(
+class CustomSearchTextFiled extends StatelessWidget {
+  const CustomSearchTextFiled(
       {super.key,
       this.icon,
       required this.hint,
@@ -16,7 +17,7 @@ class CustomCampaignTextFiled extends StatelessWidget {
 
   final String hint;
   final String labelText;
-  final Icon? icon;
+  final Widget? icon;
   final int maxLine;
   final TextEditingController? textEditingController;
   final TextInputType? textInputType;
@@ -30,13 +31,14 @@ class CustomCampaignTextFiled extends StatelessWidget {
       keyboardType: textInputType,
       controller: textEditingController,
       decoration: InputDecoration(
+
+        fillColor: AppColor.whiteColor.withOpacity(0.30000001192092896),
+          filled: true,
           border: Helper.buildOutlineInputBorder(),
           enabledBorder: Helper.buildOutlineInputBorder(),
           disabledBorder: Helper.buildOutlineInputBorder(),
-          labelText: labelText,
-          labelStyle: TextStyle(),
           hintText: hint,
-          hintStyle: TextStyle(),
+          hintStyle: AppStyle.style13Regular(context),
           prefixIcon: icon),
       maxLines: maxLine,
     );

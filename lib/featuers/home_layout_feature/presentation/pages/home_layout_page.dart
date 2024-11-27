@@ -15,9 +15,7 @@ class HomeLayoutPage extends StatelessWidget {
       create: (context) => HomeLayoutCubit(),
       child: Scaffold(
         backgroundColor: AppColor.blackColor,
-        appBar: AppBar(
-          title: const Text("Home Layoutt"),
-        ),
+
         body: BlocBuilder<HomeLayoutCubit, HomeLayoutState>(
           builder: (context, state) {
             return state.viewTap;

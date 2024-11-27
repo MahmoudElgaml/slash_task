@@ -114,7 +114,7 @@ flutter:
   fonts:
      - family: NetflixSans
        fonts:
-         - asset: assets/fonts/NetflixSans-Regular.ttf
+         - asset: assets/fonts/NetflixSans-Regular.otf
 
            weight: 700
   #

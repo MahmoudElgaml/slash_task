@@ -1,10 +1,12 @@
 
 import 'package:flutter/material.dart';
+import 'package:slash_task/core/utils/app_color.dart';
 
 class AppStyle {
   static  TextStyle style13Regular (BuildContext context) {
    return  TextStyle(
      fontFamily: 'NetflixSans',
+      color: AppColor.whiteColorWithOpcity,
       fontSize: responsiveFont(fontSize: 13, context: context),
       fontWeight: FontWeight.w400,
     );
@@ -19,12 +21,14 @@ class AppStyle {
   static  TextStyle style31Bold (BuildContext context) {
    return  TextStyle(
      fontFamily: 'NetflixSans',
+      color: AppColor.whiteColor,
       fontSize: responsiveFont(fontSize: 31, context: context),
       fontWeight: FontWeight.bold,
     );
   }
   static  TextStyle style11Medium (BuildContext context) {
    return  TextStyle(
+     color: AppColor.whiteColor,
      fontFamily: 'NetflixSans',
       fontSize: responsiveFont(fontSize: 11, context: context),
       fontWeight: FontWeight.w500,
