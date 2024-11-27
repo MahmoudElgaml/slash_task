@@ -44,7 +44,8 @@ class AppStyle {
   static  TextStyle style17Medium (BuildContext context) {
    return  TextStyle(
      fontFamily: 'NetflixSans',
-      fontSize: responsiveFont(fontSize: 13, context: context),
+      color: AppColor.whiteColor,
+      fontSize: responsiveFont(fontSize: 17, context: context),
       fontWeight: FontWeight.w500,
     );
   }
