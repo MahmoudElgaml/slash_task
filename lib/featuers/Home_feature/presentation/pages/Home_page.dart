@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:slash_task/core/utils/app_color.dart';
+import 'package:slash_task/core/utils/app_string.dart';
 import 'package:slash_task/core/utils/app_style.dart';
 import 'package:slash_task/core/utils/component/custom_camapaign_textfiled.dart';
 
@@ -48,7 +49,12 @@ class FirstFilmSection extends StatelessWidget {
           ),
           const Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [AppBarHome(), Spacer(), ControlSection()],
+            children: [
+              AppBarHome(),
+              Spacer(),
+              ControlSection(),
+              Gap(15)
+            ],
           )
         ],
       ),
@@ -105,11 +111,49 @@ class AppBarHome extends StatelessWidget {
 class ControlSection extends StatelessWidget {
   const ControlSection({super.key});
 
-  static List<String> category = ["TV Shows", "Movies", "My List"];
+
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      children: [
+     const InformationInControlSection(),
+        const Gap(22),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+          decoration: BoxDecoration(
+            color: AppColor.whiteColor,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.play_arrow_rounded,
+                color: AppColor.blackColor,
+                size: 30,
+              ),
+              const Gap(4),
+              Text(
+                AppString.playButton,
+                style: AppStyle.style13Medium(context).copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+class InformationInControlSection extends StatelessWidget {
+  const InformationInControlSection({super.key});
+  static List<String> category = ["TV Shows", "Movies", "My List"];
+  @override
+  Widget build(BuildContext context) {
+    return   Column(
       children: [
         Text(
           "Stranger Things",
@@ -121,27 +165,28 @@ class ControlSection extends StatelessWidget {
           children: category
               .map(
                 (e) => Row(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(left: 5),
-                      width: 3.62,
-                      height: 3.62,
-                      decoration: const ShapeDecoration(
-                        color: AppColor.yellowColor,
-                        shape: OvalBorder(),
-                      ),
-                    ),
-                    const Gap(7),
-                    Text(
-                      e,
-                      style: AppStyle.style11Medium(context),
-                    )
-                  ],
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(left: 5),
+                  width: 3.62,
+                  height: 3.62,
+                  decoration: const ShapeDecoration(
+                    color: AppColor.yellowColor,
+                    shape: OvalBorder(),
+                  ),
                 ),
-              )
+                const Gap(7),
+                Text(
+                  e,
+                  style: AppStyle.style11Medium(context),
+                )
+              ],
+            ),
+          )
               .toList(),
-        )
+        ),
       ],
     );
   }
 }
+
