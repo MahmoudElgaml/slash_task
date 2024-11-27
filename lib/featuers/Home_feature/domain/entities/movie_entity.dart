@@ -5,9 +5,9 @@ class MovieEntity {
   String? summary;
   num? averageRate;
   String? date;
-  String? genre;
+  List<String?>? genre;
 
-  MovieEntity(
+  MovieEntity({
     this.title,
     this.smallImage,
     this.largeImage,
@@ -15,5 +15,5 @@ class MovieEntity {
     this.averageRate,
     this.date,
     this.genre,
-  );
+  });
 }
