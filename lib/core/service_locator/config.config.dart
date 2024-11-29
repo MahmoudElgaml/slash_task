@@ -8,9 +8,9 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+
 
 import '../../featuers/Home_feature/data/data_sources/remote_data_source/home_remote_data_source.dart'
     as _i364;
@@ -34,17 +34,19 @@ import '../../featuers/search_feature/presentation/manager/search_cubit.dart'
     as _i73;
 import '../api/dio_factory.dart' as _i1008;
 
+
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
   _i174.GetIt init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
   }) {
-    final gh = _i526.GetItHelper(
+    _i526.GetItHelper(
       this,
       environment,
       environmentFilter,
     );
+
     final dioFactory = _$DioFactory();
     gh.singleton<_i361.Dio>(() => dioFactory.getDio());
     gh.factory<_i364.HomeRemoteDataSource>(
@@ -63,8 +65,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i671.SearchUseCase(gh<_i257.SearchRepo>()));
     gh.factory<_i73.SearchCubit>(
         () => _i73.SearchCubit(gh<_i671.SearchUseCase>()));
+
     return this;
   }
 }
-
-class _$DioFactory extends _i1008.DioFactory {}
