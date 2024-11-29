@@ -35,6 +35,7 @@ class CustomSearchTextFiled extends StatelessWidget {
         fillColor: AppColor.whiteColor.withOpacity(0.30000001192092896),
           filled: true,
           border: Helper.buildOutlineInputBorder(),
+
           enabledBorder: Helper.buildOutlineInputBorder(),
           disabledBorder: Helper.buildOutlineInputBorder(),
           hintText: hint,
