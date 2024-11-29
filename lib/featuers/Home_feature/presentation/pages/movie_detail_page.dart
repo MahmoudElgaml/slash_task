@@ -20,17 +20,19 @@ class MovieDetailPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColor.blackColor,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FirstSectionImage(
-              theMovie: theMovie,
-            ),
-            const Gap(10),
-            SeconedSectionMoreInformation(
-              theMovie: theMovie,
-            ),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              FirstSectionImage(
+                theMovie: theMovie,
+              ),
+              const Gap(10),
+              SeconedSectionMoreInformation(
+                theMovie: theMovie,
+              ),
+            ],
+          ),
         ),
       ),
     );

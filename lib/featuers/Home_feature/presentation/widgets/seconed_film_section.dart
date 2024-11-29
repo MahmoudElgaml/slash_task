@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:slash_task/config/routes/routes.dart';
 import 'package:slash_task/featuers/Home_feature/domain/entities/movie_entity.dart';
 
+import '../../../../core/utils/app_color.dart';
 import '../../../../core/utils/app_string.dart';
 import '../../../../core/utils/app_style.dart';
 import '../../../../generated/assets.dart';
@@ -53,22 +54,17 @@ class MovieSmallItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-       context.push(AppRoute.movieDetail,extra: singleMovie);
+        context.push(AppRoute.movieDetail, extra: singleMovie);
       },
       child: AspectRatio(
         aspectRatio: 114 / 180,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Positioned.fill(
-              child: CachedNetworkImage(
-                imageUrl: singleMovie.smallImage ?? "",
-                fit: BoxFit.fill,
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              ),
-            ),
-            Image.asset(Assets.imagesPlayButton)
-          ],
+        child: CachedNetworkImage(
+          imageUrl: singleMovie.smallImage ?? "",
+          fit: BoxFit.fill,
+          errorWidget: (context, url, error) => const Icon(
+            Icons.error,
+            color: AppColor.whiteColor,
+          ),
         ),
       ),
     );

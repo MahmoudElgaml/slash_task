@@ -45,14 +45,14 @@ class SeconedSectionMoreInformation extends StatelessWidget {
                     color: AppColor.yellowColor,
                   ),
                   Text(
-                    theMovie.averageRate.toString(),
+                    theMovie.averageRate?.toString()?? "no rate",
                     style: AppStyle.style14Regular(context),
                   ),
                 ],
               ),
               const Gap(10),
               Text(
-                "${theMovie.runTime.toString()}min",
+                "${theMovie.runTime?.toString()??"none"} min",
                 style: AppStyle.style14Regular(context).copyWith(
                   color: Colors.grey,
                 ),
