@@ -19,3 +19,5 @@ final class SearchView extends HomeLayoutState {
   // TODO: implement viewTap
   Widget get viewTap => const SearchPage();
 }
+
+

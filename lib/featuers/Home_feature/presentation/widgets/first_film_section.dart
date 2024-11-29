@@ -57,19 +57,27 @@ class FirstFilmSection extends StatelessWidget {
   }
 }
 
-class AppBarHome extends StatelessWidget {
+class AppBarHome extends StatefulWidget {
   const AppBarHome({super.key});
 
   @override
+  State<AppBarHome> createState() => _AppBarHomeState();
+}
+
+class _AppBarHomeState extends State<AppBarHome> {
+  @override
   Widget build(BuildContext context) {
+    bool isClick = context.read<HomeLayoutCubit>().isClicked;
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Row(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 21.0, right: 13),
-            child: Image.asset(Assets.imagesSmallNetLogo),
-          ),
+          !isClick
+              ? Padding(
+                  padding: const EdgeInsets.only(left: 21.0, right: 13),
+                  child: Image.asset(Assets.imagesSmallNetLogo),
+                )
+              : const SizedBox(),
           const Gap(10),
           Expanded(
             child: SizedBox(
@@ -77,6 +85,8 @@ class AppBarHome extends StatelessWidget {
               child: CustomSearchTextFiled(
                 onTap: () {
                   context.read<HomeLayoutCubit>().changeBody(1);
+                  context.read<HomeLayoutCubit>().isClicked = true;
+                  setState(() {});
                 },
                 hint: "Search",
                 maxLine: 1,
@@ -94,12 +104,14 @@ class AppBarHome extends StatelessWidget {
             ),
           ),
           const Gap(10),
-          Image.asset(
-            Assets.imagesUser,
-            height: 40,
-            width: 40,
-            fit: BoxFit.fill,
-          )
+          !isClick
+              ? Image.asset(
+                  Assets.imagesUser,
+                  height: 40,
+                  width: 40,
+                  fit: BoxFit.fill,
+                )
+              : const SizedBox(),
         ],
       ),
     );

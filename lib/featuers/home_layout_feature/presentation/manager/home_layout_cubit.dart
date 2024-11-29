@@ -12,19 +12,26 @@ part 'home_layout_state.dart';
 
 class HomeLayoutCubit extends Cubit<HomeLayoutState> {
   HomeLayoutCubit() : super(HomeView());
+  bool isClicked = false;
+  int selectedIndex = 0;
 
-  changeBody(int index){
+  changeBody(int index) {
+    if(selectedIndex == index) return;
     switch (index) {
+
       case 0:
-        emit(HomeView());
+        {
+          selectedIndex = 0;
+          emit(HomeView());
+        }
         break;
       case 1:
-        emit(SearchView());
+        {
+          selectedIndex = 1;
+          emit(SearchView());
+        }
         break;
       default:
     }
-
   }
-
-
 }
