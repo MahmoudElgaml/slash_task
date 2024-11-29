@@ -67,6 +67,9 @@ class AppBarHome extends StatefulWidget {
 class _AppBarHomeState extends State<AppBarHome> {
   @override
   Widget build(BuildContext context) {
+
+    return BlocBuilder<HomeLayoutCubit, HomeLayoutState>(
+  builder: (context, state) {
     bool isClick = context.read<HomeLayoutCubit>().isClicked;
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
@@ -115,6 +118,8 @@ class _AppBarHomeState extends State<AppBarHome> {
         ],
       ),
     );
+  },
+);
   }
 }
 

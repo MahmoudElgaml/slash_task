@@ -16,18 +16,19 @@ class HomeLayoutCubit extends Cubit<HomeLayoutState> {
   int selectedIndex = 0;
 
   changeBody(int index) {
-    if(selectedIndex == index) return;
+    if (selectedIndex == index) return;
     switch (index) {
-
       case 0:
         {
           selectedIndex = 0;
+          isClicked = false;
           emit(HomeView());
         }
         break;
       case 1:
         {
           selectedIndex = 1;
+          isClicked = true;
           emit(SearchView());
         }
         break;
