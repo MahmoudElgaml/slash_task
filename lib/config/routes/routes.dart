@@ -4,9 +4,12 @@ import 'package:slash_task/featuers/home_layout_feature/presentation/pages/home_
 import 'package:slash_task/featuers/splash_featuer/splash_view.dart';
 import 'package:slash_task/main.dart';
 
+import '../../featuers/Home_feature/presentation/pages/movie_detail_page.dart';
+
 class AppRoute {
   static const splash = '/';
-  static const home= '/home';
+  static const home = '/home';
+  static const movieDetail = '/movieDetail';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -17,8 +20,11 @@ class AppRoute {
         path: home,
         builder: (context, state) => const HomeLayoutPage(),
       ),
-
-
+      GoRoute(
+          path: movieDetail,
+          builder: (context, state) {
+            return const MovieDetailPage();
+          })
     ],
   );
 }

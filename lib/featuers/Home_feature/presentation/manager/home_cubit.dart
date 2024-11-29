@@ -11,7 +11,12 @@ class HomeCubit extends Cubit<HomeState> {
   GetAllMovieUseCase getAllMovieUseCase;
 
   HomeCubit(this.getAllMovieUseCase) : super(HomeInitial());
-
+  @override
+  void emit(HomeState state) {
+    if (!isClosed) {
+      super.emit(state);
+    }
+  }
   getAllMovie() async {
     emit(HomeGetMovieLoadingState());
     var result = await getAllMovieUseCase();

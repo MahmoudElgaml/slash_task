@@ -2,6 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:slash_task/config/routes/routes.dart';
+import 'package:slash_task/core/utils/helper.dart';
 import 'package:slash_task/featuers/Home_feature/domain/entities/movie_entity.dart';
 
 import '../../../../core/utils/app_color.dart';
@@ -22,18 +25,28 @@ class FirstFilmSection extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
-            child: CachedNetworkImage(
-              imageUrl: firstMovieOfList.largeImage ?? "",
-              fit: BoxFit.fill,
-              errorWidget: (context, url, error) => const Icon(Icons.error),
+            child: InkWell(
+              onTap: () {
+                context.push(
+                  AppRoute.movieDetail,
+                  extra: firstMovieOfList,
+                );
+              },
+              child: CachedNetworkImage(
+                imageUrl: firstMovieOfList.largeImage ?? "",
+                fit: BoxFit.fill,
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
             ),
           ),
-           Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const AppBarHome(),
               const Spacer(),
-              ControlSection(firstMovieOfList: firstMovieOfList,),
+              ControlSection(
+                firstMovieOfList: firstMovieOfList,
+              ),
               const Gap(15),
             ],
           )
@@ -91,12 +104,14 @@ class AppBarHome extends StatelessWidget {
 
 class ControlSection extends StatelessWidget {
   const ControlSection({super.key, required this.firstMovieOfList});
+
   final MovieEntity firstMovieOfList;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-         InformationInControlSection(
+        InformationInControlSection(
           firstMovieOfList: firstMovieOfList,
         ),
         const Gap(22),
@@ -116,10 +131,15 @@ class ControlSection extends StatelessWidget {
                 size: 30,
               ),
               const Gap(4),
-              Text(
-                AppString.playButton,
-                style: AppStyle.style13Medium(context).copyWith(
-                  fontWeight: FontWeight.bold,
+              InkWell(
+                onTap: () {
+                  Helper.lunchAnyUrl(firstMovieOfList.url ?? "");
+                },
+                child: Text(
+                  AppString.playButton,
+                  style: AppStyle.style13Medium(context).copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               )
             ],
@@ -131,7 +151,9 @@ class ControlSection extends StatelessWidget {
 }
 
 class InformationInControlSection extends StatelessWidget {
-  const InformationInControlSection({super.key, required this.firstMovieOfList});
+  const InformationInControlSection(
+      {super.key, required this.firstMovieOfList});
+
   final MovieEntity firstMovieOfList;
   static List<String> category = ["TV Shows", "Movies", "My List"];
 
@@ -146,8 +168,8 @@ class InformationInControlSection extends StatelessWidget {
         const Gap(15),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: firstMovieOfList.genre
-              !.map(
+          children: firstMovieOfList.genre!
+              .map(
                 (e) => Row(
                   children: [
                     Container(
@@ -161,7 +183,7 @@ class InformationInControlSection extends StatelessWidget {
                     ),
                     const Gap(7),
                     Text(
-                      e??"",
+                      e ?? "",
                       style: AppStyle.style11Medium(context),
                     )
                   ],
