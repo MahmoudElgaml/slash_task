@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+
         backgroundColor: AppColor.blackColor,
         body: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {

@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:slash_task/config/routes/routes.dart';
 import 'package:slash_task/core/utils/helper.dart';
 import 'package:slash_task/featuers/Home_feature/domain/entities/movie_entity.dart';
+import 'package:slash_task/featuers/home_layout_feature/presentation/manager/home_layout_cubit.dart';
 
 import '../../../../core/utils/app_color.dart';
 import '../../../../core/utils/app_string.dart';
@@ -42,7 +44,6 @@ class FirstFilmSection extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const AppBarHome(),
               const Spacer(),
               ControlSection(
                 firstMovieOfList: firstMovieOfList,
@@ -74,6 +75,9 @@ class AppBarHome extends StatelessWidget {
             child: SizedBox(
               height: 40,
               child: CustomSearchTextFiled(
+                onTap: () {
+                  context.read<HomeLayoutCubit>().changeBody(1);
+                },
                 hint: "Search",
                 maxLine: 1,
                 labelText: "",
