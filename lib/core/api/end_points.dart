@@ -1,5 +1,6 @@
 class EndPoints{
 
-  static const baseUrl="/";
+  static const baseUrl="https://api.tvmaze.com";
+  static const getAllMovie="/search/shows?q=all";
 
 }

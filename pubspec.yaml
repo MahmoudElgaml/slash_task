@@ -60,6 +60,8 @@ dependencies:
   go_router: ^14.6.1
   device_preview: ^1.2.0
   stylish_bottom_bar: ^1.1.0
+  # Image caching library and display
+  cached_network_image: ^3.4.1
 
   #for some animations
   flutter_animate: ^4.5.2
@@ -68,6 +70,7 @@ dependencies:
   #anotation to generate My Dependency
   injectable: ^2.5.0
   # iOS style icons
+  dartz: ^0.10.1
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
