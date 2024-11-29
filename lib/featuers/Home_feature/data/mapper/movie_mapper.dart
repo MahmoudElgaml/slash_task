@@ -10,6 +10,8 @@ class MovieMapper {
       averageRate: movieModel.show?.rating?.average,
       summary: movieModel.show?.summary ?? "none",
       genre: movieModel.show?.genres,
+      date: movieModel.show?.premiered ?? "none",
+      runTime: movieModel.show?.runtime,
     );
   }
 }
