@@ -1,8 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:slash_task/featuers/Home_feature/presentation/manager/home_cubit.dart';
 import 'package:slash_task/featuers/Home_feature/presentation/pages/Home_page.dart';
 import 'package:slash_task/featuers/search_feature/presentation/pages/search_page.dart';
+
+import '../../../../core/service_locator/config.dart';
 
 part 'home_layout_state.dart';
 

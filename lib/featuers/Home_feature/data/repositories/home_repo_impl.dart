@@ -17,15 +17,17 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failure, List<MovieEntity>>> getAllMovies() async {
     try {
       var result = await homeRemoteDataSource.getAllMovie();
-      List<MovieEntity> movieEntity = result.movies
-              ?.map(
+      print("arraive here");
+      List<MovieEntity> movieEntity = result
+              .map(
                 (e) => MovieMapper.toMovieEntity(e),
               )
-              .toList() ??
-          [];
+              .toList() ;
+
       return right(movieEntity);
     } catch (e) {
       if (e is DioException) {
+        print(e.toString());
         return left(ServerFailure.fromServer(e));
       } else {
         return left(ServerFailure(e.toString()));

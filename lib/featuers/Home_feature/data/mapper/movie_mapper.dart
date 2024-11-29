@@ -1,8 +1,8 @@
-import 'package:slash_task/featuers/Home_feature/data/models/movieModel.dart';
+import 'package:slash_task/featuers/Home_feature/data/models/MovieModel.dart';
 import 'package:slash_task/featuers/Home_feature/domain/entities/movie_entity.dart';
 
 class MovieMapper {
-  static MovieEntity toMovieEntity(Movies movieModel) {
+  static MovieEntity toMovieEntity(MovieModel movieModel) {
     return MovieEntity(
       title: movieModel.show?.name ?? "none",
       largeImage: movieModel.show?.image?.original ?? "none",

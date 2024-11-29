@@ -1,35 +1,10 @@
 class MovieModel {
   MovieModel({
-    this.movies,
-  });
-
-  MovieModel.fromJson(dynamic json) {
-    if (json['Movies'] != null) {
-      movies = [];
-      json['Movies'].forEach((v) {
-        movies?.add(Movies.fromJson(v));
-      });
-    }
-  }
-
-  List<Movies>? movies;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    if (movies != null) {
-      map['Movies'] = movies?.map((v) => v.toJson()).toList();
-    }
-    return map;
-  }
-}
-
-class Movies {
-  Movies({
     this.score,
     this.show,
   });
 
-  Movies.fromJson(dynamic json) {
+  MovieModel.fromJson(dynamic json) {
     score = json['score'];
     show = json['show'] != null ? Show.fromJson(json['show']) : null;
   }

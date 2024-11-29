@@ -20,6 +20,8 @@ import '../../featuers/Home_feature/domain/repositories/home_repo.dart'
     as _i335;
 import '../../featuers/Home_feature/domain/use_cases/get_all_movie_use_case.dart'
     as _i323;
+import '../../featuers/Home_feature/presentation/manager/home_cubit.dart'
+    as _i668;
 import '../api/dio_factory.dart' as _i1008;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -41,6 +43,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i457.HomeRepoImpl(gh<_i364.HomeRemoteDataSource>()));
     gh.factory<_i323.GetAllMovieUseCase>(
         () => _i323.GetAllMovieUseCase(gh<_i335.HomeRepo>()));
+    gh.factory<_i668.HomeCubit>(
+        () => _i668.HomeCubit(gh<_i323.GetAllMovieUseCase>()));
     return this;
   }
 }
