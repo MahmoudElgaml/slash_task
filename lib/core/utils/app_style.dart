@@ -27,6 +27,14 @@ class AppStyle {
       fontWeight: FontWeight.bold,
     );
   }
+  static  TextStyle style27Bold (BuildContext context) {
+   return  TextStyle(
+     fontFamily: 'NetflixSans',
+      color: AppColor.whiteColor,
+      fontSize: responsiveFont(fontSize: 27, context: context),
+      fontWeight: FontWeight.bold,
+    );
+  }
   static  TextStyle style11Medium (BuildContext context) {
    return  TextStyle(
      color: AppColor.whiteColor,

@@ -7,17 +7,19 @@ abstract class HomeLayoutState {
 
 final class HomeView extends HomeLayoutState {
   @override
-  // TODO: implement viewTap
-  Widget get viewTap => BlocProvider(
-        create: (context) => getIt<HomeCubit>()..getAllMovie(),
+  Widget get viewTap =>
+      BlocProvider(
+        create: (context) =>
+        getIt<HomeCubit>()
+          ..getAllMovie(),
         child: const HomePage(),
       );
 }
 
 final class SearchView extends HomeLayoutState {
   @override
-  // TODO: implement viewTap
-  Widget get viewTap => const SearchPage();
+  Widget get viewTap =>
+      const SearchPage();
 }
 
 
