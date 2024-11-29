@@ -74,7 +74,7 @@ dependencies:
   # iOS style icons
   dartz: ^0.10.1
   cupertino_icons: ^1.0.8
-
+  shimmer: ^3.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:slash_task/featuers/Home_feature/presentation/manager/home_cubit.dart';
 import 'package:slash_task/featuers/Home_feature/presentation/pages/Home_page.dart';
+import 'package:slash_task/featuers/search_feature/presentation/manager/search_cubit.dart';
 import 'package:slash_task/featuers/search_feature/presentation/pages/search_page.dart';
 
 import '../../../../core/service_locator/config.dart';

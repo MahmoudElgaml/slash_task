@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:slash_task/core/utils/component/contanier_date.dart';
+import 'package:slash_task/core/utils/component/gobal_container_rate.dart';
 
 import '../../../../core/utils/app_color.dart';
 import '../../../../core/utils/app_style.dart';
@@ -24,35 +26,12 @@ class SeconedSectionMoreInformation extends StatelessWidget {
           const Gap(10),
           Row(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColor.grayColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    theMovie.date ?? "NO DATE",
-                    style: AppStyle.style14Regular(context),
-                  ),
-                ),
-              ),
+              ContainerDate(theMovie: theMovie),
               const Gap(10),
-              Row(
-                children: [
-                  const Icon(
-                    Icons.star,
-                    color: AppColor.yellowColor,
-                  ),
-                  Text(
-                    theMovie.averageRate?.toString()?? "no rate",
-                    style: AppStyle.style14Regular(context),
-                  ),
-                ],
-              ),
+              GlobalContainerRate(theMovie: theMovie),
               const Gap(10),
               Text(
-                "${theMovie.runTime?.toString()??"none"} min",
+                "${theMovie.runTime?.toString() ?? "none"} min",
                 style: AppStyle.style14Regular(context).copyWith(
                   color: Colors.grey,
                 ),
@@ -69,7 +48,7 @@ class SeconedSectionMoreInformation extends StatelessWidget {
             children: theMovie.genre!
                 .map(
                   (genre) => buildGenreItem(genre, context),
-            )
+                )
                 .toList(),
           ),
         ],
