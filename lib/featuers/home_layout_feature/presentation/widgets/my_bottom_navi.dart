@@ -15,32 +15,36 @@ class MyBottomNavi extends StatefulWidget {
 }
 
 class _MyBottomNaviState extends State<MyBottomNavi> {
-  int selectedIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {
-    return StylishBottomBar(
-      hasNotch: true,
-      currentIndex: selectedIndex,
-      onTap: (value) {
-        context.read<HomeLayoutCubit>().changeBody(value);
-        setState(() {
-          selectedIndex = value;
-        });
+    return BlocBuilder<HomeLayoutCubit, HomeLayoutState>(
+      builder: (context, state) {
+        return StylishBottomBar(
+          hasNotch: true,
+          currentIndex: context
+              .read<HomeLayoutCubit>()
+              .selectedIndex,
+          onTap: (value) {
+            context.read<HomeLayoutCubit>().changeBody(value);
+
+          },
+          backgroundColor: AppColor.blackColor,
+          items: [
+            BottomBarItem(
+                icon: SvgPicture.asset(Assets.imagesHomeIcon),
+                title: const Text("Home"),
+                selectedColor: AppColor.yellowColor),
+            BottomBarItem(
+              icon: SvgPicture.asset(Assets.imagesSearchIcon),
+              title: const Text("search"),
+              selectedColor: AppColor.yellowColor,
+            ),
+          ],
+          option: DotBarOptions(),
+        );
       },
-      backgroundColor: AppColor.blackColor,
-      items: [
-        BottomBarItem(
-            icon: SvgPicture.asset(Assets.imagesHomeIcon),
-            title: const Text("Home"),
-            selectedColor: AppColor.yellowColor),
-        BottomBarItem(
-          icon: SvgPicture.asset(Assets.imagesSearchIcon),
-          title: const Text("search"),
-          selectedColor: AppColor.yellowColor,
-        ),
-      ],
-      option: DotBarOptions(),
     );
   }
 }

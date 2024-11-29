@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:slash_task/config/routes/routes.dart';
 import 'package:slash_task/core/utils/helper.dart';
 import 'package:slash_task/featuers/Home_feature/domain/entities/movie_entity.dart';
+import 'package:slash_task/featuers/home_layout_feature/presentation/manager/home_layout_cubit.dart';
 
 import '../../../../core/utils/app_color.dart';
 import '../../../../core/utils/app_string.dart';
@@ -42,7 +44,6 @@ class FirstFilmSection extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const AppBarHome(),
               const Spacer(),
               ControlSection(
                 firstMovieOfList: firstMovieOfList,
@@ -56,24 +57,40 @@ class FirstFilmSection extends StatelessWidget {
   }
 }
 
-class AppBarHome extends StatelessWidget {
+class AppBarHome extends StatefulWidget {
   const AppBarHome({super.key});
 
   @override
+  State<AppBarHome> createState() => _AppBarHomeState();
+}
+
+class _AppBarHomeState extends State<AppBarHome> {
+  @override
   Widget build(BuildContext context) {
+
+    return BlocBuilder<HomeLayoutCubit, HomeLayoutState>(
+  builder: (context, state) {
+    bool isClick = context.read<HomeLayoutCubit>().isClicked;
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Row(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 21.0, right: 13),
-            child: Image.asset(Assets.imagesSmallNetLogo),
-          ),
+          !isClick
+              ? Padding(
+                  padding: const EdgeInsets.only(left: 21.0, right: 13),
+                  child: Image.asset(Assets.imagesSmallNetLogo),
+                )
+              : const SizedBox(),
           const Gap(10),
           Expanded(
             child: SizedBox(
               height: 40,
               child: CustomSearchTextFiled(
+                onTap: () {
+                  context.read<HomeLayoutCubit>().changeBody(1);
+                  context.read<HomeLayoutCubit>().isClicked = true;
+                  setState(() {});
+                },
                 hint: "Search",
                 maxLine: 1,
                 labelText: "",
@@ -90,15 +107,19 @@ class AppBarHome extends StatelessWidget {
             ),
           ),
           const Gap(10),
-          Image.asset(
-            Assets.imagesUser,
-            height: 40,
-            width: 40,
-            fit: BoxFit.fill,
-          )
+          !isClick
+              ? Image.asset(
+                  Assets.imagesUser,
+                  height: 40,
+                  width: 40,
+                  fit: BoxFit.fill,
+                )
+              : const SizedBox(),
         ],
       ),
     );
+  },
+);
   }
 }
 
