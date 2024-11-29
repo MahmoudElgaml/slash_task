@@ -30,6 +30,8 @@ import '../../featuers/search_feature/domain/repositories/search_repo.dart'
     as _i257;
 import '../../featuers/search_feature/domain/use_cases/search_use_case.dart'
     as _i671;
+import '../../featuers/search_feature/presentation/manager/search_cubit.dart'
+    as _i73;
 import '../api/dio_factory.dart' as _i1008;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -59,6 +61,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i668.HomeCubit(gh<_i323.GetAllMovieUseCase>()));
     gh.factory<_i671.SearchUseCase>(
         () => _i671.SearchUseCase(gh<_i257.SearchRepo>()));
+    gh.factory<_i73.SearchCubit>(
+        () => _i73.SearchCubit(gh<_i671.SearchUseCase>()));
     return this;
   }
 }

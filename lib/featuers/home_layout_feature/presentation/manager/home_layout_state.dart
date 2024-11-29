@@ -19,10 +19,7 @@ final class HomeView extends HomeLayoutState {
 final class SearchView extends HomeLayoutState {
   @override
   Widget get viewTap =>
-      BlocProvider(
-        create: (context) => getIt<SearchCubit>(),
-        child: const SearchPage(),
-      );
+      const SearchPage();
 }
 
 
