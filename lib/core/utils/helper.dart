@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 abstract class Helper {
   static String timeToString(TimeOfDay time) {
@@ -31,4 +32,12 @@ abstract class Helper {
       borderRadius: BorderRadius.circular(10),
     );
   }
-}
+
+   static Future<void> lunchAnyUrl(String url) async {
+     final Uri uri = Uri.parse(url);
+     if (await canLaunchUrl(uri)) {
+       launchUrl(uri);
+     }
+   }
+  }
+

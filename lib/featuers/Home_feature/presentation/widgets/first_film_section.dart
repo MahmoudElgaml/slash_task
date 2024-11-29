@@ -1,6 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:slash_task/config/routes/routes.dart';
+import 'package:slash_task/core/utils/helper.dart';
+import 'package:slash_task/featuers/Home_feature/domain/entities/movie_entity.dart';
+import 'package:slash_task/featuers/home_layout_feature/presentation/manager/home_layout_cubit.dart';
 
 import '../../../../core/utils/app_color.dart';
 import '../../../../core/utils/app_string.dart';
@@ -9,7 +16,9 @@ import '../../../../core/utils/component/custom_camapaign_textfiled.dart';
 import '../../../../generated/assets.dart';
 
 class FirstFilmSection extends StatelessWidget {
-  const FirstFilmSection({super.key});
+  const FirstFilmSection({super.key, required this.firstMovieOfList});
+
+  final MovieEntity firstMovieOfList;
 
   @override
   Widget build(BuildContext context) {
@@ -18,19 +27,28 @@ class FirstFilmSection extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset(
-              Assets.images1064746,
-              fit: BoxFit.fill,
-              width: double.infinity,
+            child: InkWell(
+              onTap: () {
+                context.push(
+                  AppRoute.movieDetail,
+                  extra: firstMovieOfList,
+                );
+              },
+              child: CachedNetworkImage(
+                imageUrl: firstMovieOfList.largeImage ?? "",
+                fit: BoxFit.fill,
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
             ),
           ),
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              AppBarHome(),
-              Spacer(),
-              ControlSection(),
-              Gap(15),
+              const Spacer(),
+              ControlSection(
+                firstMovieOfList: firstMovieOfList,
+              ),
+              const Gap(15),
             ],
           )
         ],
@@ -39,24 +57,40 @@ class FirstFilmSection extends StatelessWidget {
   }
 }
 
-class AppBarHome extends StatelessWidget {
+class AppBarHome extends StatefulWidget {
   const AppBarHome({super.key});
 
   @override
+  State<AppBarHome> createState() => _AppBarHomeState();
+}
+
+class _AppBarHomeState extends State<AppBarHome> {
+  @override
   Widget build(BuildContext context) {
+
+    return BlocBuilder<HomeLayoutCubit, HomeLayoutState>(
+  builder: (context, state) {
+    bool isClick = context.read<HomeLayoutCubit>().isClicked;
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Row(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 21.0, right: 13),
-            child: Image.asset(Assets.imagesSmallNetLogo),
-          ),
+          !isClick
+              ? Padding(
+                  padding: const EdgeInsets.only(left: 21.0, right: 13),
+                  child: Image.asset(Assets.imagesSmallNetLogo),
+                )
+              : const SizedBox(),
           const Gap(10),
           Expanded(
             child: SizedBox(
               height: 40,
               child: CustomSearchTextFiled(
+                onTap: () {
+                  context.read<HomeLayoutCubit>().changeBody(1);
+                  context.read<HomeLayoutCubit>().isClicked = true;
+                  setState(() {});
+                },
                 hint: "Search",
                 maxLine: 1,
                 labelText: "",
@@ -73,26 +107,34 @@ class AppBarHome extends StatelessWidget {
             ),
           ),
           const Gap(10),
-          Image.asset(
-            Assets.imagesUser,
-            height: 40,
-            width: 40,
-            fit: BoxFit.fill,
-          )
+          !isClick
+              ? Image.asset(
+                  Assets.imagesUser,
+                  height: 40,
+                  width: 40,
+                  fit: BoxFit.fill,
+                )
+              : const SizedBox(),
         ],
       ),
     );
+  },
+);
   }
 }
 
 class ControlSection extends StatelessWidget {
-  const ControlSection({super.key});
+  const ControlSection({super.key, required this.firstMovieOfList});
+
+  final MovieEntity firstMovieOfList;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const InformationInControlSection(),
+        InformationInControlSection(
+          firstMovieOfList: firstMovieOfList,
+        ),
         const Gap(22),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -110,10 +152,15 @@ class ControlSection extends StatelessWidget {
                 size: 30,
               ),
               const Gap(4),
-              Text(
-                AppString.playButton,
-                style: AppStyle.style13Medium(context).copyWith(
-                  fontWeight: FontWeight.bold,
+              InkWell(
+                onTap: () {
+                  Helper.lunchAnyUrl(firstMovieOfList.url ?? "");
+                },
+                child: Text(
+                  AppString.playButton,
+                  style: AppStyle.style13Medium(context).copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               )
             ],
@@ -125,8 +172,10 @@ class ControlSection extends StatelessWidget {
 }
 
 class InformationInControlSection extends StatelessWidget {
-  const InformationInControlSection({super.key});
+  const InformationInControlSection(
+      {super.key, required this.firstMovieOfList});
 
+  final MovieEntity firstMovieOfList;
   static List<String> category = ["TV Shows", "Movies", "My List"];
 
   @override
@@ -134,13 +183,13 @@ class InformationInControlSection extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "Stranger Things",
+          firstMovieOfList.title ?? "",
           style: AppStyle.style31Bold(context),
         ),
         const Gap(15),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: category
+          children: firstMovieOfList.genre!
               .map(
                 (e) => Row(
                   children: [
@@ -155,7 +204,7 @@ class InformationInControlSection extends StatelessWidget {
                     ),
                     const Gap(7),
                     Text(
-                      e,
+                      e ?? "",
                       style: AppStyle.style11Medium(context),
                     )
                   ],

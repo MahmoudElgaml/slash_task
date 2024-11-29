@@ -16,6 +16,7 @@ class AppStyle {
      fontFamily: 'NetflixSans',
       fontSize: responsiveFont(fontSize: 14, context: context),
       fontWeight: FontWeight.w400,
+     color: AppColor.whiteColor,
     );
   }
   static  TextStyle style31Bold (BuildContext context) {

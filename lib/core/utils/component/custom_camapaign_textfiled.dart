@@ -13,7 +13,9 @@ class CustomSearchTextFiled extends StatelessWidget {
       required this.labelText,
       this.textEditingController,
       this.textInputType,
-      this.validator});
+      this.validator,
+      this.onTap
+      });
 
   final String hint;
   final String labelText;
@@ -22,10 +24,14 @@ class CustomSearchTextFiled extends StatelessWidget {
   final TextEditingController? textEditingController;
   final TextInputType? textInputType;
   final String? Function(String? value)? validator;
+  final void Function()? onTap;
+
+
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: onTap ,
       validator: validator,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: textInputType,
@@ -35,6 +41,7 @@ class CustomSearchTextFiled extends StatelessWidget {
         fillColor: AppColor.whiteColor.withOpacity(0.30000001192092896),
           filled: true,
           border: Helper.buildOutlineInputBorder(),
+
           enabledBorder: Helper.buildOutlineInputBorder(),
           disabledBorder: Helper.buildOutlineInputBorder(),
           hintText: hint,

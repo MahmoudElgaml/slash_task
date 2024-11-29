@@ -27,12 +27,7 @@ class ServerFailure extends Failure {
         return ServerFailure("request to server is canceled");
       case DioExceptionType.connectionError:
         return ServerFailure("connection Timeout");
-      case DioExceptionType.unknown:
-        if (dioException.message!.contains("SocketException")) {
-          return ServerFailure("error in internet");
-        } else {
-          return ServerFailure("opps there something went wrong");
-        }
+
       default:
         return ServerFailure("opps there something went wrong");
     }

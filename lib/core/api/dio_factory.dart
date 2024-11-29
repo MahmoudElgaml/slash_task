@@ -1,31 +1,35 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-class DioFactory {
-  //singleton pattern to ensure only one instance of dio is created
-  static Dio? dio;
+import '../cache/storage_token.dart';
+import '../service_locator/config.dart';
 
-  DioFactory._();
+@module
+abstract class DioFactory {
+  // Method to provide Dio instance as a singleton
+  @singleton
+  Dio getDio() {
+    const Duration timeOut = Duration(seconds: 30);
 
- static Dio getDio() {
-    Duration timeOut = const Duration(seconds: 30);
-    if (dio == null) {
-      dio = Dio()
-        ..options.connectTimeout = timeOut
-        ..options.receiveTimeout = timeOut;
-      addDioInterceptors();
-      return dio!;
-    } else {
-      return dio!;
-    }
+    final Dio dio = Dio()
+      ..options.connectTimeout = timeOut
+      ..options.receiveTimeout = timeOut;
+    _addDioInterceptors(dio);
+
+
+    return dio;
   }
 
- static addDioInterceptors() {
-    dio!.interceptors.add(PrettyDioLogger(
+  void _addDioInterceptors(Dio dio) {
+    dio.interceptors.add(PrettyDioLogger(
       requestHeader: true,
       requestBody: true,
       responseBody: true,
       responseHeader: false,
     ));
   }
+
+
+
 }
