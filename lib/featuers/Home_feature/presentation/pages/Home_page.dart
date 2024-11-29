@@ -27,14 +27,14 @@ class HomePage extends StatelessWidget {
                 child: Text(state.message),
               );
             } else if (state is HomeGetMovieSuccessState) {
-              return const CustomScrollView(
+              return CustomScrollView(
                 slivers: [
                   SliverToBoxAdapter(
-                    child: FirstFilmSection(),
+                    child: FirstFilmSection(firstMovieOfList: state.listOfMovie[0],),
                   ),
                   SliverFillRemaining(
                     hasScrollBody: false,
-                    child: SecondFilmSection(),
+                    child: SecondFilmSection(allMovie: state.listOfMovie,),
                   ),
                 ],
               );

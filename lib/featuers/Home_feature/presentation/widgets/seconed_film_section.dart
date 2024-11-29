@@ -1,12 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:slash_task/featuers/Home_feature/domain/entities/movie_entity.dart';
 
 import '../../../../core/utils/app_string.dart';
 import '../../../../core/utils/app_style.dart';
 import '../../../../generated/assets.dart';
 
 class SecondFilmSection extends StatelessWidget {
-  const SecondFilmSection({super.key});
+  const SecondFilmSection({super.key, required this.allMovie});
+
+  final List<MovieEntity> allMovie;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +30,10 @@ class SecondFilmSection extends StatelessWidget {
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               separatorBuilder: (context, index) => const Gap(10),
-              itemBuilder: (context, index) => const MovieSmallItem(),
-              itemCount: 20,
+              itemBuilder: (context, index) => MovieSmallItem(
+                singleMovie: allMovie[index + 1],
+              ),
+              itemCount: allMovie.length - 1,
             ),
           )
         ],
@@ -37,7 +43,9 @@ class SecondFilmSection extends StatelessWidget {
 }
 
 class MovieSmallItem extends StatelessWidget {
-  const MovieSmallItem({super.key});
+  const MovieSmallItem({super.key, required this.singleMovie});
+
+  final MovieEntity singleMovie;
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +55,10 @@ class MovieSmallItem extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Positioned.fill(
-            child: Image.network(
-              "https://static.tvmaze.com/uploads/images/medium_portrait/425/1064746.jpg",
+            child: CachedNetworkImage(
+              imageUrl: singleMovie.smallImage ?? "",
               fit: BoxFit.fill,
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
           Image.asset(Assets.imagesPlayButton)

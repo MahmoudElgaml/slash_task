@@ -10,8 +10,8 @@ final class HomeGetMovieFailState extends HomeState {
   HomeGetMovieFailState(this.message);
 }
 final class HomeGetMovieSuccessState extends HomeState {
-  final List<MovieEntity> movieEntity;
-  HomeGetMovieSuccessState(this.movieEntity);
+  final List<MovieEntity> listOfMovie;
+  HomeGetMovieSuccessState(this.listOfMovie);
 
 }
 
